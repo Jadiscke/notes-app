@@ -8,7 +8,7 @@ const supabaseAnonKey = process.env.SUPABASE_ANON_KEY!;
 
 export async function getSupabaseClient(
   session: any,
-): Promise<ReturnType<typeof createClient>> {
+): Promise<ReturnType<typeof createClient<Database>>> {
   if (!session) {
     const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey);
     return supabase;

@@ -4,161 +4,222 @@ export type Json =
   | boolean
   | null
   | { [key: string]: Json | undefined }
-  | Json[]
+  | Json[];
 
 export type Database = {
   next_auth: {
     Tables: {
       accounts: {
         Row: {
-          access_token: string | null
-          expires_at: number | null
-          id: string
-          id_token: string | null
-          oauth_token: string | null
-          oauth_token_secret: string | null
-          provider: string
-          providerAccountId: string
-          refresh_token: string | null
-          scope: string | null
-          session_state: string | null
-          token_type: string | null
-          type: string
-          userId: string | null
-        }
+          access_token: string | null;
+          expires_at: number | null;
+          id: string;
+          id_token: string | null;
+          oauth_token: string | null;
+          oauth_token_secret: string | null;
+          provider: string;
+          providerAccountId: string;
+          refresh_token: string | null;
+          scope: string | null;
+          session_state: string | null;
+          token_type: string | null;
+          type: string;
+          userId: string | null;
+        };
         Insert: {
-          access_token?: string | null
-          expires_at?: number | null
-          id?: string
-          id_token?: string | null
-          oauth_token?: string | null
-          oauth_token_secret?: string | null
-          provider: string
-          providerAccountId: string
-          refresh_token?: string | null
-          scope?: string | null
-          session_state?: string | null
-          token_type?: string | null
-          type: string
-          userId?: string | null
-        }
+          access_token?: string | null;
+          expires_at?: number | null;
+          id?: string;
+          id_token?: string | null;
+          oauth_token?: string | null;
+          oauth_token_secret?: string | null;
+          provider: string;
+          providerAccountId: string;
+          refresh_token?: string | null;
+          scope?: string | null;
+          session_state?: string | null;
+          token_type?: string | null;
+          type: string;
+          userId?: string | null;
+        };
         Update: {
-          access_token?: string | null
-          expires_at?: number | null
-          id?: string
-          id_token?: string | null
-          oauth_token?: string | null
-          oauth_token_secret?: string | null
-          provider?: string
-          providerAccountId?: string
-          refresh_token?: string | null
-          scope?: string | null
-          session_state?: string | null
-          token_type?: string | null
-          type?: string
-          userId?: string | null
-        }
+          access_token?: string | null;
+          expires_at?: number | null;
+          id?: string;
+          id_token?: string | null;
+          oauth_token?: string | null;
+          oauth_token_secret?: string | null;
+          provider?: string;
+          providerAccountId?: string;
+          refresh_token?: string | null;
+          scope?: string | null;
+          session_state?: string | null;
+          token_type?: string | null;
+          type?: string;
+          userId?: string | null;
+        };
         Relationships: [
           {
-            foreignKeyName: "accounts_userId_fkey"
-            columns: ["userId"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
+            foreignKeyName: "accounts_userId_fkey";
+            columns: ["userId"];
+            isOneToOne: false;
+            referencedRelation: "users";
+            referencedColumns: ["id"];
           },
-        ]
-      }
+        ];
+      };
       sessions: {
         Row: {
-          expires: string
-          id: string
-          sessionToken: string
-          userId: string | null
-        }
+          expires: string;
+          id: string;
+          sessionToken: string;
+          userId: string | null;
+        };
         Insert: {
-          expires: string
-          id?: string
-          sessionToken: string
-          userId?: string | null
-        }
+          expires: string;
+          id?: string;
+          sessionToken: string;
+          userId?: string | null;
+        };
         Update: {
-          expires?: string
-          id?: string
-          sessionToken?: string
-          userId?: string | null
-        }
+          expires?: string;
+          id?: string;
+          sessionToken?: string;
+          userId?: string | null;
+        };
         Relationships: [
           {
-            foreignKeyName: "sessions_userId_fkey"
-            columns: ["userId"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
+            foreignKeyName: "sessions_userId_fkey";
+            columns: ["userId"];
+            isOneToOne: false;
+            referencedRelation: "users";
+            referencedColumns: ["id"];
           },
-        ]
-      }
+        ];
+      };
       users: {
         Row: {
-          email: string | null
-          emailVerified: string | null
-          id: string
-          image: string | null
-          name: string | null
-        }
+          email: string | null;
+          emailVerified: string | null;
+          id: string;
+          image: string | null;
+          name: string | null;
+        };
         Insert: {
-          email?: string | null
-          emailVerified?: string | null
-          id?: string
-          image?: string | null
-          name?: string | null
-        }
+          email?: string | null;
+          emailVerified?: string | null;
+          id?: string;
+          image?: string | null;
+          name?: string | null;
+        };
         Update: {
-          email?: string | null
-          emailVerified?: string | null
-          id?: string
-          image?: string | null
-          name?: string | null
-        }
-        Relationships: []
-      }
+          email?: string | null;
+          emailVerified?: string | null;
+          id?: string;
+          image?: string | null;
+          name?: string | null;
+        };
+        Relationships: [];
+      };
       verification_tokens: {
         Row: {
-          expires: string
-          identifier: string | null
-          token: string
-        }
+          expires: string;
+          identifier: string | null;
+          token: string;
+        };
         Insert: {
-          expires: string
-          identifier?: string | null
-          token: string
-        }
+          expires: string;
+          identifier?: string | null;
+          token: string;
+        };
         Update: {
-          expires?: string
-          identifier?: string | null
-          token?: string
-        }
-        Relationships: []
-      }
-    }
+          expires?: string;
+          identifier?: string | null;
+          token?: string;
+        };
+        Relationships: [];
+      };
+    };
     Views: {
-      [_ in never]: never
-    }
+      [_ in never]: never;
+    };
     Functions: {
       uid: {
-        Args: Record<PropertyKey, never>
-        Returns: string
-      }
-    }
+        Args: Record<PropertyKey, never>;
+        Returns: string;
+      };
+    };
     Enums: {
-      [_ in never]: never
-    }
+      [_ in never]: never;
+    };
     CompositeTypes: {
-      [_ in never]: never
-    }
-  }
-}
+      [_ in never]: never;
+    };
+  };
+  public: {
+    Tables: {
+      notes: {
+        Row: {
+          content: string;
+          created_at: string;
+          id: string;
+          updated_at: string;
+          user_id: string;
+        };
+        Insert: {
+          content: string;
+          created_at?: string;
+          id?: string;
+          updated_at?: string;
+          user_id: string;
+        };
+        Update: {
+          content?: string;
+          created_at?: string;
+          id?: string;
+          updated_at?: string;
+          user_id?: string;
+        };
+        Relationships: [];
+      };
+      users: {
+        Row: {
+          email: string | null;
+          id: string;
+          image: string | null;
+          name: string | null;
+        };
+        Insert: {
+          email?: string | null;
+          id: string;
+          image?: string | null;
+          name?: string | null;
+        };
+        Update: {
+          email?: string | null;
+          id?: string;
+          image?: string | null;
+          name?: string | null;
+        };
+        Relationships: [];
+      };
+    };
+    Views: {
+      [_ in never]: never;
+    };
+    Functions: {
+      [_ in never]: never;
+    };
+    Enums: {
+      [_ in never]: never;
+    };
+    CompositeTypes: {
+      [_ in never]: never;
+    };
+  };
+};
 
-type PublicSchema = Database[Extract<keyof Database, "public">]
+type PublicSchema = Database[Extract<keyof Database, "public">];
 
 export type Tables<
   PublicTableNameOrOptions extends
@@ -171,7 +232,7 @@ export type Tables<
 > = PublicTableNameOrOptions extends { schema: keyof Database }
   ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
       Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
-      Row: infer R
+      Row: infer R;
     }
     ? R
     : never
@@ -179,11 +240,11 @@ export type Tables<
         PublicSchema["Views"])
     ? (PublicSchema["Tables"] &
         PublicSchema["Views"])[PublicTableNameOrOptions] extends {
-        Row: infer R
+        Row: infer R;
       }
       ? R
       : never
-    : never
+    : never;
 
 export type TablesInsert<
   PublicTableNameOrOptions extends
@@ -194,17 +255,17 @@ export type TablesInsert<
     : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
   ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Insert: infer I
+      Insert: infer I;
     }
     ? I
     : never
   : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
     ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
-        Insert: infer I
+        Insert: infer I;
       }
       ? I
       : never
-    : never
+    : never;
 
 export type TablesUpdate<
   PublicTableNameOrOptions extends
@@ -215,17 +276,17 @@ export type TablesUpdate<
     : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
   ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Update: infer U
+      Update: infer U;
     }
     ? U
     : never
   : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
     ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
-        Update: infer U
+        Update: infer U;
       }
       ? U
       : never
-    : never
+    : never;
 
 export type Enums<
   PublicEnumNameOrOptions extends
@@ -238,14 +299,14 @@ export type Enums<
   ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
   : PublicEnumNameOrOptions extends keyof PublicSchema["Enums"]
     ? PublicSchema["Enums"][PublicEnumNameOrOptions]
-    : never
+    : never;
 
 export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
     | keyof PublicSchema["CompositeTypes"]
     | { schema: keyof Database },
   CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof Database;
   }
     ? keyof Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
     : never = never,
@@ -253,5 +314,4 @@ export type CompositeTypes<
   ? Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
   : PublicCompositeTypeNameOrOptions extends keyof PublicSchema["CompositeTypes"]
     ? PublicSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
-    : never
-
+    : never;

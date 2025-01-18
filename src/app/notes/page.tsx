@@ -14,7 +14,7 @@ export default async function Page() {
     const { data, error } = await supabase.from("notes").select("*");
     if (error || (data && data.length === 0)) {
       return (
-        <div className="mt-32">
+        <div className="mt-32 flex flex-col justify-center items-center ">
           <h1 className="text-center font-bold text-3xl">Notes</h1>
 
           <CreateNoteButton />

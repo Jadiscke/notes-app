@@ -1,9 +1,9 @@
 "use client";
 import style from "./style.module.css";
 
-import { EditIcon, EyeIcon, TrashIcon, ViewIcon } from "lucide-react";
-import { Remark } from "react-remark";
 import DeleteNoteButton from "../DeleteNoteButton";
+import { EditIcon } from "lucide-react";
+import Link from "next/link";
 
 interface ListNotesProps {
   notes: {
@@ -21,7 +21,7 @@ export default function ListNotes({ notes }: ListNotesProps) {
     <div className="grid grid-cols-1 p-4 gap-2 lg:max-w-[800px] lg:grid-cols-2 justify-center align-center items-center">
       {reversedNotes.map((note) => (
         <div
-          className="bg-[#c9ada7] p-4 pr-0 overflow-hidden w-[300px] h-[200px] border-[#9a8c98] text-[#22223b] rounded border-2"
+          className="bg-[#c9ada7] p-4 pr-0 overflow-hidden w-[300px] min-h-[100px] max-h-[200px] border-[#9a8c98] text-[#22223b] rounded border-2"
           key={note.id}
         >
           <div className="flex flex-row justify-between">
@@ -31,18 +31,21 @@ export default function ListNotes({ notes }: ListNotesProps) {
                 note.created_at.slice(11, 16)}
             </div>
             <div className="flex flex-row gap-2 justify-end pr-4">
-              <EyeIcon size={20} />
-              <EditIcon size={20} />
               <DeleteNoteButton note_id={note.id} />
+              <Link href={`/notes/${note.id}/edit`}>
+                <EditIcon size={20} />
+              </Link>
             </div>
           </div>
-          <div
-            className={`${style.scrollbar} p-2 overscroll-contain  h-full w-full overflow-y-auto overflow-x-hidden`}
-          >
-            <div className="prose-sm">
-              <Remark>{note.content}</Remark>
+          <Link href={`/notes/${note.id}`}>
+            <div
+              className={`${style.scrollbar} p-2 overscroll-contain  h-full w-full overflow-y-auto overflow-x-hidden`}
+            >
+              <div className="text-xl font-bold">
+                {note.content.split("\n")[1]}
+              </div>
             </div>
-          </div>
+          </Link>
         </div>
       ))}
     </div>

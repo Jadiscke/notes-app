@@ -11,7 +11,10 @@ export default async function Page() {
     redirect("/login");
   } else {
     const supabase = await getSupabaseClient(session);
-    const { data, error } = await supabase.from("notes").select("*");
+    const { data, error } = await supabase
+      .from("notes")
+      .select("*")
+      .order("created_at", { ascending: false });
     if (error || (data && data.length === 0)) {
       return (
         <div className="mt-32 flex flex-col justify-center items-center ">

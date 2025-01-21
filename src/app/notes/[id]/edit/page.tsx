@@ -24,7 +24,7 @@ export default async function Page({
           " " +
           data[0].updated_at.slice(11, 16)}
       </p>
-      <EditNote content={data[0].content} />
+      <EditNote noteId={data[0].id} content={data[0].content} />
     </div>
   );
 }

@@ -3,39 +3,27 @@
 import { getSupabaseClient } from "@/lib/supabase-client";
 import { auth } from "#/auth";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 
-export async function createNoteToDb(
-  prevState: Object | undefined,
-  formData: FormData,
-) {
-  let id = null;
+export async function saveNoteToDb(noteId: string, newContent: string) {
   try {
     const session = await auth();
     const supabaseClient = await getSupabaseClient(session);
-    const { error, statusText, data } = await supabaseClient
+    const { error, statusText } = await supabaseClient
       .from("notes")
-      .insert({
-        user_id: session?.user.id!,
-        content: `# New Note`,
-      })
-      .select();
-
+      .update({ content: newContent, updated_at: new Date().toISOString() })
+      .match({ id: noteId, user_id: session?.user.id! });
     if (error) {
       console.error("Error saving note:", error);
       return { success: false, error: "Failed to save note" };
     }
 
-    if (statusText === "Created") {
-      id = data[0]?.id;
-    }
+    console.log("Status Text", statusText);
+
+    return { success: true, error: null };
   } catch (error) {
     console.error("Error saving note:", error);
     return { success: false, error: "Failed to save note" };
   } finally {
     revalidatePath("/notes");
-    if (id !== null) {
-      redirect(`/notes/${id}/edit`);
-    }
   }
 }

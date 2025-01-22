@@ -18,7 +18,7 @@ interface ListNotesProps {
 }
 export default function ListNotes({ notes }: ListNotesProps) {
   return (
-    <div className="grid grid-cols-1 p-4 gap-2 lg:max-w-[600px]  justify-center align-center items-center">
+    <div className="grid grid-cols-1 p-4 gap-2 w-full lg:max-w-[600px]  justify-center align-center items-center">
       {(notes.length > 0 &&
         notes.map((note) => (
           <div

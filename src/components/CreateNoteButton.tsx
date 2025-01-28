@@ -12,7 +12,7 @@ export default function CreateNoteButton() {
   return (
     <form
       action={formAction}
-      className="pr-4 pb-4 w-full lg:max-w-[800px] flex flex-row justify-end"
+      className="h-full w-full lg:max-w-[800px] flex flex-row items-center  justify-center pr-4"
     >
       <button
         type="submit"

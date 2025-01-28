@@ -38,11 +38,11 @@ export default function SearchBar() {
   }, [searchParams]);
 
   return (
-    <div className="">
+    <div className="flex flex-row justify-center items-center mr-4">
       <input
         type="text"
         placeholder="Search"
-        className="w-full mr-10 rounded p-2 "
+        className="w-full ml-4 rounded p-2 "
         onChange={handleChange}
         value={search}
       />

@@ -56,15 +56,11 @@ export default function EditNote({
 
     // Ensure the clicked element is a list item
     if (target.tagName === "LI" || target.closest("li")) {
-      const clickedLine = target.textContent || "";
+      const lineIndex = parseInt(target.attributes.getNamedItem("data-item-id")?.value || "0") - 1;
       const lines = value.split("\n");
 
-      // Find the line that matches the clicked content
-      const lineIndex = lines.findIndex((line) =>
-        line.includes(clickedLine.trim()),
-      );
 
-      if (lineIndex === -1) return;
+     if (lineIndex === -1) return;
 
       const line = lines[lineIndex];
 
@@ -96,6 +92,11 @@ export default function EditNote({
         }`}
         source={value}
         style={{ whiteSpace: "pre-wrap" }}
+        components={{
+          li: ({ children, ...props }) => {
+            return <li {...props} data-item-id={props.node?.position?.start.line}>{children}</li>;
+          },
+        }}
       />
     );
   }, [value]);

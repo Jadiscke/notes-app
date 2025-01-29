@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useCallback } from "react";
-import MDEditor from "@uiw/react-md-editor";
+import { useState, useCallback, ChangeEvent } from "react";
+import MDEditor, { ContextStore } from "@uiw/react-md-editor";
 
 import { debounce } from "@/lib/utils";
 import { saveNoteToDb } from "@/app/actions/save_note";
@@ -42,7 +42,8 @@ export default function EditNote({
     [],
   );
 
-  const handleChange = (newValue: string) => {
+  const handleChange = (newValue?: string, _event?: ChangeEvent<HTMLTextAreaElement>, _state?: ContextStore) => {
+    if (!newValue) return;
     setValue(newValue);
 
     if (noteState !== "writing...") {
@@ -56,6 +57,7 @@ export default function EditNote({
 
     // Ensure the clicked element is a list item
     if (target.tagName === "LI" || target.closest("li")) {
+      // get the line index from the data-item-id attribute
       const lineIndex = parseInt(target.attributes.getNamedItem("data-item-id")?.value || "0") - 1;
       const lines = value.split("\n");
 

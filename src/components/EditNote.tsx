@@ -42,7 +42,7 @@ export default function EditNote({
     [],
   );
 
-  const handleChange = (newValue?: string, _event?: ChangeEvent<HTMLTextAreaElement>, _state?: ContextStore) => {
+  const handleChange = (newValue?: string) => {
     if (!newValue) return;
     setValue(newValue);
 

@@ -6,7 +6,26 @@ import MDEditor, { ContextStore } from "@uiw/react-md-editor";
 import { debounce } from "@/lib/utils";
 import { saveNoteToDb } from "@/app/actions/save_note";
 
-type NoteState = "writing..." | "saving..." | "saved";
+type NoteState = "writing..." | "saving..." | "saved" | `error: ${string}`;
+
+function ErrorModal({ error, onClose }: { error: string; onClose: () => void }) {
+  if (!error) return null;
+  
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white p-6 rounded-lg shadow-xl max-w-md min-w-[300px]">
+        <h3 className="text-lg font-semibold text-red-600 mb-4">Error</h3>
+        <p className="text-gray-700 mb-4">{error}</p>
+        <button
+          onClick={onClose}
+          className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export default function EditNote({
   content,
@@ -31,12 +50,11 @@ export default function EditNote({
           }
 
           setNoteState("saved");
-          console.log({ success, error });
         } catch (err) {
-          console.log(err);
+          console.error(err);
+          setNoteState("error:  An unknown error occurred");
         }
       },
-
       1500,
     ),
     [],
@@ -104,33 +122,39 @@ export default function EditNote({
   }, [value]);
 
   return (
-    <div
-      className={`flex flex-col ${
-        hidden ? "" : "lg:grid lg:grid-cols-2"
-      }  gap-4`}
-      data-color-mode="light"
-    >
+    <>
       <div
-        className={`${
-          hidden ? "hidden" : ""
-        } overflow-hidden w-full bg-[#c9ada7] p-4 border-[#9a8c98] !text-[#22223b] rounded border-2`}
+        className={`flex flex-col ${
+          hidden ? "" : "lg:grid lg:grid-cols-2"
+        }  gap-4`}
+        data-color-mode="light"
       >
-        <MDEditor
-          className="!bg-[#c9ada7] w-full !text-[#22223b] rounded border-2"
-          height={"fit-content"}
-          data-color-mode="light"
-          preview="edit"
-          value={value}
-          onChange={handleChange}
-        />
-        <span className="inline-block w-full text-end text-[#22223b] text-sm">
-          {noteState}
-        </span>
-      </div>
+        <div
+          className={`${
+            hidden ? "hidden" : ""
+          } overflow-hidden w-full bg-[#c9ada7] p-4 border-[#9a8c98] !text-[#22223b] rounded border-2`}
+        >
+          <MDEditor
+            className="!bg-[#c9ada7] w-full !text-[#22223b] rounded border-2"
+            height={"fit-content"}
+            data-color-mode="light"
+            preview="edit"
+            value={value}
+            onChange={handleChange}
+          />
+          <span className="inline-block w-full text-end text-[#22223b] text-sm">
+            {noteState}
+          </span>
+        </div>
 
-      <div onClick={handleLineClick}>
-        <Markdown />
+        <div onClick={handleLineClick}>
+          <Markdown />
+        </div>
       </div>
-    </div>
+      <ErrorModal 
+        error={noteState.startsWith("error:") ? noteState.slice(7) : ""} 
+        onClose={() => setNoteState("saved")} 
+      />
+    </>
   );
 }

@@ -1,8 +1,6 @@
 "use client";
-import style from "./style.module.css";
 
 import DeleteNoteButton from "@/components/DeleteNoteButton";
-import MDEditor from "@uiw/react-md-editor";
 import { EditIcon } from "lucide-react";
 import Link from "next/link";
 import EditNote from "../EditNote";

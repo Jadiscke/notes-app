@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useCallback, ChangeEvent } from "react";
-import MDEditor, { ContextStore } from "@uiw/react-md-editor";
+import { useState, useCallback} from "react";
+import MDEditor from "@uiw/react-md-editor";
 
 import { debounce } from "@/lib/utils";
 import { saveNoteToDb } from "@/app/actions/save_note";
@@ -142,13 +142,16 @@ export default function EditNote({
             value={value}
             onChange={handleChange}
           />
-          <span className="inline-block w-full text-end text-[#22223b] text-sm">
+          <span className="text-white inline-block w-full text-end text-sm">
             {noteState}
           </span>
         </div>
 
         <div onClick={handleLineClick}>
           <Markdown />
+          <span className="text-white pr-2 pt-8 inline-block w-full text-end text-sm">
+            {noteState}
+          </span>
         </div>
       </div>
       <ErrorModal 

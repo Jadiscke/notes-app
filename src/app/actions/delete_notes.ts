@@ -7,7 +7,7 @@ import { getSupabaseClient } from "@/lib/supabase-client";
 import { auth } from "#/auth";
 
 export async function deleteNoteFromDb(
-  prevState: Object | undefined,
+  _prevState: object,
   formData: FormData,
 ) {
   const deleteSchema = z.object({

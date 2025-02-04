@@ -5,10 +5,7 @@ import { auth } from "#/auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export async function createNoteToDb(
-  prevState: Object | undefined,
-  formData: FormData,
-) {
+export async function createNoteToDb() {
   let id = null;
   try {
     const session = await auth();
@@ -16,7 +13,7 @@ export async function createNoteToDb(
     const { error, statusText, data } = await supabaseClient
       .from("notes")
       .insert({
-        user_id: session?.user.id!,
+        user_id: session?.user?.id || '',
         content: `# New Note`,
       })
       .select();

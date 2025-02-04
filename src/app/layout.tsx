@@ -35,7 +35,7 @@ export default async function RootLayout({
 }>) {
   const session = await auth();
   const supabase = await getSupabaseClient(session);
-  const { data, error } = await supabase.from("users").select("*");
+  const { data } = await supabase.from("users").select("*");
   return (
     <html lang="en">
       <body
@@ -71,7 +71,7 @@ export default async function RootLayout({
           )}
           {data && data.length > 0 && (
             <Link className="text-xl text-slate-700 font-bold" href="/profile">
-              <Image src={data[0].image} width={40} height={40} alt="profile" />
+              <Image src={data[0].image || ""} width={40} height={40} alt="profile" />
             </Link>
           )}
         </nav>

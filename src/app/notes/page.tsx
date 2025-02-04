@@ -6,6 +6,8 @@ import { getSupabaseClient } from "@/lib/supabase-client";
 import CreateNoteButton from "@/components/CreateNoteButton";
 import Pagination from "@/components/Pagination";
 import SearchBar from "@/components/SearchBar";
+import { createClient } from "@supabase/supabase-js";
+import { Database } from "#/database.types";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -14,7 +16,7 @@ interface SearchParams {
   search?: string;
 }
 
-async function fetchNotes(supabase: any, page: string, search: string) {
+async function fetchNotes(supabase: ReturnType<typeof createClient<Database>> , page: string, search: string) {
   const pageOffset = ITEMS_PER_PAGE * (Number(page) - 1);
   return await supabase
     .from("notes")

@@ -21,6 +21,7 @@ export default function SearchBar() {
     [searchParams],
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleSearch = useCallback(
     debounce((search: string) => {
       router.push(pathname + "?" + createQueryString("search", search));

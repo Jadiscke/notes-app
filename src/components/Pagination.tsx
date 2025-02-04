@@ -43,7 +43,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
     if (searchParams.get("page") === null) {
       router.push(pathname + "?" + createQueryString("page", "1"));
     }
-  }, [searchParams]);
+  }, [createQueryString, pathname, router, searchParams]);
 
   const actualPage = Number(searchParams.get("page"));
   const nextPages = getNextPages(totalPages, actualPage);

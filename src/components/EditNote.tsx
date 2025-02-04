@@ -39,6 +39,7 @@ export default function EditNote({
   const [value, setValue] = useState(content);
   const [noteState, setNoteState] = useState<NoteState>("saved");
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleDebounceUpdate = useCallback(
     debounce(
       async (noteId: string, newContent: string) => {
@@ -119,7 +120,7 @@ export default function EditNote({
         }}
       />
     );
-  }, [value]);
+  }, [value, hidden]);
 
   return (
     <>
@@ -149,9 +150,11 @@ export default function EditNote({
 
         <div onClick={handleLineClick}>
           <Markdown />
-          <span className="text-white pr-2 pt-8 inline-block w-full text-end text-sm">
-            {noteState}
-          </span>
+          {hidden && (
+            <span className="text-white pr-2 pt-8 inline-block w-full text-end text-sm">
+              {noteState}
+            </span>
+          )}
         </div>
       </div>
       <ErrorModal 

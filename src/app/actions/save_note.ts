@@ -8,10 +8,17 @@ export async function saveNoteToDb(noteId: string, newContent: string) {
   try {
     const session = await auth();
     const supabaseClient = await getSupabaseClient(session);
+    const userId = session?.user?.id;
+
+    if (!userId) {
+      return { success: false, error: "User not authenticated" };
+    }
+
     const { error, statusText } = await supabaseClient
       .from("notes")
       .update({ content: newContent, updated_at: new Date().toISOString() })
-      .match({ id: noteId, user_id: session?.user.id! });
+      .match({ id: noteId, user_id: userId });
+
     if (error) {
       console.error("Error saving note:", error);
       return { success: false, error: "Failed to save note" };

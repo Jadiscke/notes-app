@@ -3,15 +3,12 @@ import BackButton from "@/components/BackButton";
 import EditNote from "@/components/EditNote";
 
 import { getSupabaseClient } from "@/lib/supabase-client";
-import { redirect } from "next/navigation";
 
 export default async function Page({
   params,
 }: {
   params: Promise<{ id: string }>;
-  path: Promise<string>;
 }) {
-  redirect;
   const id = (await params).id;
   const session = await auth();
   const supabase = await getSupabaseClient(session);

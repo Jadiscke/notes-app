@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export function debounce<T extends (...args: any[]) => void>(
   func: T,
   delay: number,
@@ -6,11 +7,11 @@ export function debounce<T extends (...args: any[]) => void>(
 
   return (...args: Parameters<T>) => {
     if (timeoutId) {
-      clearTimeout(timeoutId); // Clear the previous timeout
+      clearTimeout(timeoutId);
     }
 
     timeoutId = setTimeout(() => {
-      func(...args); // Call the function after the delay
+      func(...args);
     }, delay);
   };
 }

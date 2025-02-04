@@ -8,8 +8,9 @@ interface DeleteNoteButtonProps {
 }
 
 export default function DeleteNoteButton({ note_id }: DeleteNoteButtonProps) {
-  const [_formState, formAction, isPending] = useActionState(
+  const [, formAction, isPending] = useActionState(
     deleteNoteFromDb,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     {} as any,
   );
 

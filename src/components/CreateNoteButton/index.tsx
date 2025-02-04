@@ -28,18 +28,20 @@ export default function CreateNoteButton() {
           type="submit"
           disabled={isPending}
           className="bg-black text-white p-2 rounded"
+          aria-label="Create new note"
         >
           <PlusIcon size={20} />
         </button>
       </form>
 
       {showError && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+        <div aria-label="Error modal" className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
           <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-[320px]">
             <h3 className="text-xl font-semibold mb-3">Error</h3>
             <p className="text-gray-600">Failed to create note. Please try again.</p>
             <button
               onClick={() => setShowError(false)}
+              aria-label="Close error button"
               className="mt-6 w-full bg-black text-white py-3 rounded-lg hover:bg-gray-800 transition-colors"
             >
               Close

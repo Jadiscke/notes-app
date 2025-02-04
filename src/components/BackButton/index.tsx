@@ -10,7 +10,7 @@ export default function BackButton() {
       className="bg-black text-white p-2 rounded"
       onClick={() => router.back()}
     >
-      <ArrowLeftIcon size={20} />
+      <ArrowLeftIcon size={20} data-testid="arrow-left-icon" />
     </button>
   );
 }

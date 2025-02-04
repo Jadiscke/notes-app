@@ -1,36 +1,23 @@
-import pino from "pino";
-import pretty from "pino-pretty";
 import jwt from "jsonwebtoken";
 
 import NextAuth from "next-auth";
 import Github from "next-auth/providers/github";
 import { SupabaseAdapter } from "@auth/supabase-adapter";
-const stream = pretty({
-  colorize: true,
-});
-const log = pino(
-  {
-    level: "debug",
-  },
-  stream,
-);
 // For more information on each option (and a full list of options) go to
 // https://authjs.dev/reference/core/types#authconfig
 export const { handlers, auth, signIn, signOut } = NextAuth({
   // https://authjs.dev/getting-started/authentication/oauth
-  debug: true,
   logger: {
     error(code, ...message) {
-      log.error(code, message);
+      console.error(code, ...message);
     },
     warn(code, ...message) {
-      log.warn(code, message);
+      console.warn(code, ...message);
     },
     debug(code, ...message) {
-      log.debug(code, message);
+      console.debug(code, ...message);
     },
   },
-
   providers: [Github],
   adapter: SupabaseAdapter({
     url: process.env.SUPABASE_URL!,
@@ -52,4 +39,5 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return session;
     },
   },
+  trustHost: true
 });

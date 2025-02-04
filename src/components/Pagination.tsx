@@ -50,7 +50,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
   const previousPages = getPreviousPages(actualPage);
 
   return (
-    <div className="grid  grid-cols-[1fr_auto_1fr] gap-2 justify-center items-center flex-row">
+  <div className="grid grid-cols-[1fr_auto_1fr] gap-2 pb-4 justify-center items-center flex-row">
       <div className="flex justify-center items-center gap-2 flex-row">
         {previousPages.length > 0 && (
           <Link

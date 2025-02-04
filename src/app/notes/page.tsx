@@ -44,7 +44,7 @@ export default async function Page({
   const { count, data, error } = await fetchNotes(supabase, page, search);
 
   return (
-    <div className="mt-32 flex flex-col justify-center items-center">
+    <div className="mt-32 flex flex-col gap-8 justify-center items-center">
       <h1 className="text-center font-bold text-3xl">Notes</h1>
       <div className="grid grid-cols-[1fr_50px] gap-4 items-center justify-center w-full lg:max-w-[1050px]">
         <SearchBar />

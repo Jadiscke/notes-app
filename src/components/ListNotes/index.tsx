@@ -38,7 +38,7 @@ export default function ListNotes({ notes }: ListNotesProps) {
             </div>
             <EditNote noteId={note.id} content={note.content} hidden={true} />
           </div>
-        ))) || <div> </div>}
+        ))) || <div data-testid="empty-state"> </div>}
     </div>
   );
 }

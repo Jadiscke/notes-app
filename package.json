@@ -6,11 +6,15 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "vitest",
+    "test:watch": "vitest watch",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@auth/supabase-adapter": "^1.7.4",
     "@supabase/supabase-js": "^2.47.12",
+    "@testing-library/jest-dom": "^6.6.3",
     "@uiw/react-md-editor": "^4.0.5",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.471.1",
@@ -25,16 +29,24 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/typography": "^0.5.16",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^20",
     "@types/pino": "^7.0.5",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/coverage-v8": "^3.0.5",
+    "dotenv": "^16.4.7",
     "eslint": "^9",
     "eslint-config-next": "15.1.4",
+    "eslint-plugin-testing-library": "^7.1.1",
+    "jsdom": "^26.0.0",
     "postcss": "^8",
     "supabase": "^2.2.1",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^3.0.5"
   }
 }

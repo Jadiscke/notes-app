@@ -5,25 +5,9 @@ import Link from "next/link";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { useCallback, useEffect } from "react";
 
-function getNextPages(totalPages: number, actualPage: number): number[] {
-  const nextPages = [];
-  for (let i = actualPage + 1; i <= totalPages && i <= actualPage + 3; i++) {
-    if (i > actualPage) {
-      nextPages.push(i);
-    }
-  }
-  return nextPages;
-}
+import { getNextPages, getPreviousPages } from "./utils";
 
-function getPreviousPages(actualPage: number): number[] {
-  const previousPages = [];
-  for (let i = actualPage; i > actualPage - 3 && i > 0; i--) {
-    if (i < actualPage) {
-      previousPages.push(i);
-    }
-  }
-  return previousPages.reverse();
-}
+
 
 export default function Pagination({ totalPages }: { totalPages: number }) {
   const searchParams = useSearchParams();

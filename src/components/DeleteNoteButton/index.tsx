@@ -23,13 +23,22 @@ export default function DeleteNoteButton({ note_id }: DeleteNoteButtonProps) {
   return (
     <>
       <div>
-        <button type="button" onClick={handleDeleteClick} disabled={isPending}>
+        <button 
+          type="button" 
+          onClick={handleDeleteClick} 
+          disabled={isPending}
+          aria-label="Delete note"
+        >
           <TrashIcon size={20} />
         </button>
       </div>
 
       {showConfirm && (
-        <form action={formAction} className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+        <form 
+          action={formAction} 
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4"
+          data-testid="delete-form"
+        >
           <input hidden name="id" defaultValue={note_id} />
           <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-[320px]">
             <h3 className="text-xl font-semibold mb-3">Confirm Delete</h3>

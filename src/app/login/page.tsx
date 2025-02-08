@@ -1,4 +1,4 @@
-import { GithubIcon } from "lucide-react";
+import Image from "next/image";
 import { signIn } from "#/auth";
 
 const githubLogin = async () => {
@@ -10,7 +10,7 @@ export default async function Login() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
       <form
-        className="flex flex-col justify-center gap-4 p-10 min-h-[300px] rounded-lg bg-[#c9ada7] shadow-sm shadow-gray-700"
+        className="flex flex-col justify-center gap-4 p-10  rounded-lg bg-[#c9ada7] shadow-sm shadow-gray-700"
         action={githubLogin}
       >
         <button
@@ -18,9 +18,7 @@ export default async function Login() {
           type="submit"
         >
           Sign in with Github
-          <div className="rounded-full border-[#22223b] border-2 p-1">
-            <GithubIcon />
-          </div>
+            <Image src="/github.svg" alt="Github" width={30} height={30} />
         </button>
       </form>
     </main>
